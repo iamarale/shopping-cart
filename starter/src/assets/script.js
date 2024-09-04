@@ -74,53 +74,45 @@ const products = [
 const cart = [];
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
-  - addProductToCart should get the correct product based on the productId
-  - addProductToCart should then increase the product's quantity
-  - if the product is not already in the cart, add it to the cart*/
+  [x] addProductToCart should get the correct product based on the productId
+  [ ] if the product is not already in the cart, add it to the cart
+  [x] addProductToCart should then increase the product's quantity */
 const addProductToCart = function (productId) {
   cart.push(products[productId]);
-  console.log(cart);
+
+  // if exist, increase quantity
+  if (products[productId]) {
+    increaseQuantity(productId);
+  }
 };
 
 /* Create a function named increaseQuantity that takes in the productId as an argument
-  - increaseQuantity should get the correct product based on the productId
-  - increaseQuantity should then increase the product's quantity */
+  [ ] increaseQuantity should get the correct product based on the productId
+  [ ] increaseQuantity should then increase the product's quantity */
 const increaseQuantity = function (productId) {
-  if (products[productId].quantity < 0) {
-    products[productId].quantity = 111;
-    console.log("increased");
-  } else {
-    products[productId].quantity = 222;
-    console.log("increased default");
-  }
-  console.log(products[productId]);
+  products[productId].quantity += 1;
 };
-increaseQuantity(2);
 /* Create a function named decreaseQuantity that takes in the productId as an argument
-  - decreaseQuantity should get the correct product based on the productId
-  - decreaseQuantity should decrease the quantity of the product
-  - if the function decreases the quantity to 0, the product is removed from the cart*/
+  [ ] decreaseQuantity should get the correct product based on the productId
+  [ ] decreaseQuantity should decrease the quantity of the product
+  [ ] if the function decreases the quantity to 0, the product is removed from the cart*/
 const decreaseQuantity = function (productId) {
-  if ((products[productId].quantity = 1)) {
-    products[productId].quantity--;
-    console.log("decreased");
+  if (products[productId].quantity <= 0) {
+    products[productId].quantity = 0;
   } else {
-    console.log("decrease default");
-    products[productId].quantity = -1231;
+    products[productId].quantity--;
   }
-  console.log(products[productId]);
 };
-decreaseQuantity(2);
-console.log(products[2]);
+
 /* Create a function named removeProductFromCart that takes in the productId as an argument
-- removeProductFromCart should get the correct product based on the productId
-- removeProductFromCart should update the product quantity to 0
-- removeProductFromCart should remove the product from the cart*/
+  [ ] removeProductFromCart should get the correct product based on the productId
+  [ ] removeProductFromCart should update the product quantity to 0
+  [ ] removeProductFromCart should remove the product from the cart*/
 const removeProductFromCart = function (productId) {};
 
 /* Create a function named cartTotal that has no parameters
-- cartTotal should iterate through the cart to get the total cost of all products
-- cartTotal should return the total cost of the products in the cart
+  [ ] cartTotal should iterate through the cart to get the total cost of all products
+  [ ] cartTotal should return the total cost of the products in the cart
 Hint: price and quantity can be used to determine total cost*/
 const cartTotal = function () {};
 
@@ -128,9 +120,9 @@ const cartTotal = function () {};
 const emptyCart = function () {};
 
 /* Create a function named pay that takes in an amount as an argument
-  - amount is the money paid by customer
-  - pay will return a negative number if there is a remaining balance
-  - pay will return a positive number if money should be returned to customer
+  [ ] amount is the money paid by customer
+  [ ] pay will return a negative number if there is a remaining balance
+  [ ] pay will return a positive number if money should be returned to customer
   Hint: cartTotal function gives us cost of all the products in the cart  */
 const pay = function (amount) {};
 
