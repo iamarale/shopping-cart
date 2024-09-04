@@ -8,34 +8,25 @@ const products = [
 */
   {
     name: "Cherry",
-    price: 8.99,
+    price: 0.56,
     quantity: 0,
-    productId: 1,
+    productId: 0,
     image: "../images/cherry.jpg",
   },
   {
     name: "Orange",
-    price: 8.99,
+    price: 1,
     quantity: 0,
-    productId: 2,
+    productId: 1,
     image: "../images/orange.jpg",
   },
   {
     name: "Strawberry",
-    price: 8.99,
+    price: 3.0,
     quantity: 0,
-    productId: 3,
+    productId: 2,
     image: "../images/strawberry.jpg",
   },
-  {
-    name: "Cherry",
-    price: 8.99,
-    quantity: 0,
-    productId: 4,
-    image:
-      "https://images.unsplash.com/photo-1476887334197-56adbf254e1a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-
   /* Create 3 or more product objects using object literal notation 
    Each product should include five properties
    - name: name of product (string)
@@ -44,11 +35,20 @@ const products = [
    - productId: unique id for the product (number)
    - image: picture of product (url string)
 */
+
+  {
+    name: "Cherry Pie",
+    price: 8.99,
+    quantity: 0,
+    productId: 3,
+    image:
+      "https://images.unsplash.com/photo-1476887334197-56adbf254e1a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
   {
     name: "Calzone",
     price: 10.0,
     quantity: 0,
-    productId: 5,
+    productId: 4,
     image:
       "https://images.unsplash.com/photo-1707080032705-ec2df78fd395?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -56,7 +56,7 @@ const products = [
     name: "Chicken Scarpariello",
     price: 14.99,
     quantity: 0,
-    productId: 6,
+    productId: 5,
     image:
       "https://assets.bonappetit.com/photos/59c94a8f3b3bf713cb63808f/1:1/w_2560%2Cc_limit/chicken-scarpariello.jpg",
   },
@@ -64,7 +64,7 @@ const products = [
     name: "Baked Stuffed Eggplant with Italian Sausage",
     price: 14.99,
     quantity: 0,
-    productId: 7,
+    productId: 6,
     image:
       "https://www.foodandwine.com/thmb/zuTM2DyGbvdso_PSGZmPIwqgNgQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/0895_191203_dupree_fw_seo_bakedstuffedeggplant_16352-4f71168c25ba4bafabc21c2ebb08848e.jpg",
   },
@@ -74,35 +74,58 @@ const products = [
 const cart = [];
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
-  [x] addProductToCart should get the correct product based on the productId
-  [ ] if the product is not already in the cart, add it to the cart
-  [x] addProductToCart should then increase the product's quantity */
+  [✅] addProductToCart should get the correct product based on the productId
+  [✅] if the product is not already in the cart, add it to the cart
+  [✅] addProductToCart should then increase the product's quantity */
 const addProductToCart = function (productId) {
-  cart.push(products[productId]);
-
-  // if exist, increase quantity
-  if (products[productId]) {
-    increaseQuantity(productId);
+  // checks if product isnt in cart
+  if (!cart.includes(products[productId])) {
+    // adds to cart by ID
+    cart.push(products[productId]);
+  } else {
+    // increases quantity if already inside
+    products[productId].quantity++;
   }
 };
+addProductToCart(0);
+addProductToCart(0);
+addProductToCart(0);
+addProductToCart(0);
+addProductToCart(0);
+addProductToCart(0);
+addProductToCart(0);
 
 /* Create a function named increaseQuantity that takes in the productId as an argument
-  [ ] increaseQuantity should get the correct product based on the productId
-  [ ] increaseQuantity should then increase the product's quantity */
+  [✅] increaseQuantity should get the correct product based on the productId
+  [✅] increaseQuantity should then increase the product's quantity */
 const increaseQuantity = function (productId) {
   products[productId].quantity += 1;
 };
+increaseQuantity(0);
+increaseQuantity(0);
+increaseQuantity(0);
+increaseQuantity(0);
 /* Create a function named decreaseQuantity that takes in the productId as an argument
-  [ ] decreaseQuantity should get the correct product based on the productId
-  [ ] decreaseQuantity should decrease the quantity of the product
+  [✅] decreaseQuantity should get the correct product based on the productId
+  [] decreaseQuantity should decrease the quantity of the product
   [ ] if the function decreases the quantity to 0, the product is removed from the cart*/
 const decreaseQuantity = function (productId) {
-  if (products[productId].quantity <= 0) {
+  // if less than 0
+  if (products[productId].quantity <= 0 && cart.includes(products[productId])) {
     products[productId].quantity = 0;
   } else {
     products[productId].quantity--;
   }
 };
+decreaseQuantity(0);
+decreaseQuantity(0);
+decreaseQuantity(0);
+decreaseQuantity(0);
+decreaseQuantity(0);
+decreaseQuantity(0);
+decreaseQuantity(0);
+decreaseQuantity(0);
+decreaseQuantity(0);
 
 /* Create a function named removeProductFromCart that takes in the productId as an argument
   [ ] removeProductFromCart should get the correct product based on the productId
@@ -132,7 +155,7 @@ const pay = function (amount) {};
   To fully complete this project, it is expected that all tests pass.
   Run the following command in terminal to run tests
   npm run test*/
-
+console.log(cart, products);
 module.exports = {
   products,
   cart,
