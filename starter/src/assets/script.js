@@ -88,24 +88,13 @@ const addProductToCart = function (productId) {
     products[productId].quantity++;
   }
 };
-addProductToCart(6);
-addProductToCart(4);
-addProductToCart(1);
-addProductToCart(1);
-addProductToCart(1);
-addProductToCart(3);
-addProductToCart(2);
+
 /* Create a function named increaseQuantity that takes in the productId as an argument
   [✅] increaseQuantity should get the correct product based on the productId
   [✅] increaseQuantity should then increase the product's quantity */
 const increaseQuantity = function (productId) {
   products[productId].quantity++;
 };
-increaseQuantity(6);
-increaseQuantity(6);
-increaseQuantity(6);
-increaseQuantity(6);
-console.log(cart);
 
 /* Create a function named decreaseQuantity that takes in the productId as an argument
   [✅] decreaseQuantity should get the correct product based on the productId
@@ -134,6 +123,7 @@ const removeProductFromCart = function (productId) {
     cart.splice(productId, 1);
   }
 };
+
 /* Create a function named cartTotal that has no parameters
   [✅] cartTotal should iterate through the cart to get the total cost of all products
   [✅] cartTotal should return the total cost of the products in the cart
@@ -152,15 +142,15 @@ const emptyCart = function () {
 };
 
 /* Create a function named pay that takes in an amount as an argument
-  [ ] amount is the money paid by customer
-  [ ] pay will return a negative number if there is a remaining balance
-  [ ] pay will return a positive number if money should be returned to customer
+  [✅] amount is the money paid by customer
+  [✅] pay will return a negative number if there is a remaining balance
+  [✅] pay will return a positive number if money should be returned to customer
   Hint: cartTotal function gives us cost of all the products in the cart  */
 const pay = function (amount) {
   const totalCost = cartTotal();
-  console.log(totalCost);
+  return (amount - totalCost).toFixed(2);
 };
-pay(100);
+
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
 /* The following is for running unit tests. 
