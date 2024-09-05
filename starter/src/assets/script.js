@@ -71,7 +71,7 @@ const products = [
 ];
 
 /* Declare an empty array named cart to hold the items in the cart */
-const cart = [];
+let cart = [];
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
   [✅] addProductToCart should get the correct product based on the productId
@@ -82,61 +82,85 @@ const addProductToCart = function (productId) {
   if (!cart.includes(products[productId])) {
     // adds to cart by ID
     cart.push(products[productId]);
+    products[productId].quantity = 1;
   } else {
     // increases quantity if already inside
     products[productId].quantity++;
   }
 };
-addProductToCart(0);
 addProductToCart(6);
+addProductToCart(4);
+addProductToCart(1);
+addProductToCart(1);
+addProductToCart(1);
 addProductToCart(3);
-addProductToCart(3);
-
+addProductToCart(2);
 /* Create a function named increaseQuantity that takes in the productId as an argument
   [✅] increaseQuantity should get the correct product based on the productId
   [✅] increaseQuantity should then increase the product's quantity */
 const increaseQuantity = function (productId) {
   products[productId].quantity++;
 };
-increaseQuantity(0);
+increaseQuantity(6);
+increaseQuantity(6);
+increaseQuantity(6);
+increaseQuantity(6);
+console.log(cart);
 
 /* Create a function named decreaseQuantity that takes in the productId as an argument
   [✅] decreaseQuantity should get the correct product based on the productId
   [✅] decreaseQuantity should decrease the quantity of the product
   [✅] if the function decreases the quantity to 0, the product is removed from the cart*/
 const decreaseQuantity = function (productId) {
+  // check if product  is greater than 0
   if (products[productId].quantity > 0) {
     products[productId].quantity--;
   } else {
+    // if less than 0, it removes it from cart
     cart.splice(cart[productId], 1);
   }
 };
 
-decreaseQuantity(0);
-decreaseQuantity(0);
-
 /* Create a function named removeProductFromCart that takes in the productId as an argument
-  [ ] removeProductFromCart should get the correct product based on the productId
-  [ ] removeProductFromCart should update the product quantity to 0
-  [ ] removeProductFromCart should remove the product from the cart*/
-const removeProductFromCart = function (productId) {};
-
+[✅] removeProductFromCart should get the correct product based on the productId
+[✅] removeProductFromCart should update the product quantity to 0
+[✅] removeProductFromCart should remove the product from the cart*/
+const removeProductFromCart = function (productId) {
+  // gets correct product
+  if (cart[productId] <= 0) {
+    // updates its quantity to 0;
+    products[productId].quantity = 0;
+    // removes the product from cart
+    cart.splice(productId, 1);
+  }
+};
 /* Create a function named cartTotal that has no parameters
-  [ ] cartTotal should iterate through the cart to get the total cost of all products
-  [ ] cartTotal should return the total cost of the products in the cart
+  [✅] cartTotal should iterate through the cart to get the total cost of all products
+  [✅] cartTotal should return the total cost of the products in the cart
 Hint: price and quantity can be used to determine total cost*/
-const cartTotal = function () {};
+const cartTotal = function () {
+  let total = 0;
+  cart.map(function (item, index) {
+    total += item.price * item.quantity;
+  });
+  return total.toFixed(2);
+};
 
-/* Create a function called emptyCart that empties the products from the cart */
-const emptyCart = function () {};
+/* [✅] Create a function called emptyCart that empties the products from the cart */
+const emptyCart = function () {
+  cart = [];
+};
 
 /* Create a function named pay that takes in an amount as an argument
   [ ] amount is the money paid by customer
   [ ] pay will return a negative number if there is a remaining balance
   [ ] pay will return a positive number if money should be returned to customer
   Hint: cartTotal function gives us cost of all the products in the cart  */
-const pay = function (amount) {};
-
+const pay = function (amount) {
+  const totalCost = cartTotal();
+  console.log(totalCost);
+};
+pay(100);
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
 /* The following is for running unit tests. 
