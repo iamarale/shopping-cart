@@ -88,42 +88,30 @@ const addProductToCart = function (productId) {
   }
 };
 addProductToCart(0);
-addProductToCart(0);
-addProductToCart(0);
-addProductToCart(0);
-addProductToCart(0);
-addProductToCart(0);
-addProductToCart(0);
+addProductToCart(6);
+addProductToCart(3);
+addProductToCart(3);
 
 /* Create a function named increaseQuantity that takes in the productId as an argument
   [✅] increaseQuantity should get the correct product based on the productId
   [✅] increaseQuantity should then increase the product's quantity */
 const increaseQuantity = function (productId) {
-  products[productId].quantity += 1;
+  products[productId].quantity++;
 };
 increaseQuantity(0);
-increaseQuantity(0);
-increaseQuantity(0);
-increaseQuantity(0);
+
 /* Create a function named decreaseQuantity that takes in the productId as an argument
   [✅] decreaseQuantity should get the correct product based on the productId
-  [] decreaseQuantity should decrease the quantity of the product
-  [ ] if the function decreases the quantity to 0, the product is removed from the cart*/
+  [✅] decreaseQuantity should decrease the quantity of the product
+  [✅] if the function decreases the quantity to 0, the product is removed from the cart*/
 const decreaseQuantity = function (productId) {
-  // if less than 0
-  if (products[productId].quantity <= 0 && cart.includes(products[productId])) {
-    products[productId].quantity = 0;
-  } else {
+  if (products[productId].quantity > 0) {
     products[productId].quantity--;
+  } else {
+    cart.splice(cart[productId], 1);
   }
 };
-decreaseQuantity(0);
-decreaseQuantity(0);
-decreaseQuantity(0);
-decreaseQuantity(0);
-decreaseQuantity(0);
-decreaseQuantity(0);
-decreaseQuantity(0);
+
 decreaseQuantity(0);
 decreaseQuantity(0);
 
