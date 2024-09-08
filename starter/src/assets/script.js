@@ -8,7 +8,7 @@ const products = [
 */
   {
     name: "Cherry",
-    price: 0.56,
+    price: 0.5,
     quantity: 0,
     productId: 0,
     image: "../images/cherry.jpg",
@@ -70,71 +70,57 @@ const products = [
   },
 ];
 
+// helper function
+function getProductId(productId) {
+  return products[productId];
+}
 /* Declare an empty array named cart to hold the items in the cart */
 let cart = [];
 
-// Create a function named addProductToCart that takes in the product productId as an argument
-// [✅] addProductToCart should get the correct product based on the productId
-// [✅] if the product is not already in the cart, add it to the cart
-// [✅] addProductToCart should then increase the product's quantity
 const addProductToCart = function (productId) {
+  const product = getProductId(productId);
+
   // checks if product isnt in cart
-  if (!cart.includes(products[productId])) {
-    // adds to cart by ID=
-    cart.push(products[productId]);
+  if (!cart.includes(product)) {
+    // if isn't in cart, add it to cart
+    cart.push(product);
   }
   // increases quantity if already inside
-  products[productId].quantity++;
+  product.quantity++;
 };
 
-// Create a function named increaseQuantity that takes in the productId as an argument
-// [✅] increaseQuantity should get the correct product based on the productId
-// [✅] increaseQuantity should then increase the product's quantity
 const increaseQuantity = function (productId) {
+  // selected product quantity increases by 1
   products[productId].quantity++;
 };
-
-// Create a function named decreaseQuantity that takes in the productId as an argument
-// [✅] decreaseQuantity should get the correct product based on the productId
-// [✅] decreaseQuantity should decrease the quantity of the product
-// [✅] if the function decreases the quantity to 0, the product is removed from the cart
-// const decreaseQuantity = function (productId) {
-//   if (products[productId].quantity >= 2) {
-//     products[productId].quantity--;
-//   } else {
-//     cart.splice(cart[productId], 1);
-//   }
-// };
 
 const decreaseQuantity = function (productId) {
-  if (products[productId].quantity > 1) {
-    products[productId].quantity--;
+  const product = getProductId(productId);
+
+  if (product.quantity > 1) {
+    // decreases quant. if more than 1
+    product.quantity--;
   } else {
-    // if < 0 then it gets index and removes
-    products[productId].quantity = 0;
-    if (cart.indexOf(products[productId]) > -1) {
-      cart.splice(cart.indexOf(products[productId]), 1);
+    // sets the quantity to 0
+    product.quantity = 0;
+    if (cart.indexOf(product) > -1) {
+      // if the item in cart is greater than -1, it removes it from the cart
+      cart.splice(cart.indexOf(product), 1);
     }
   }
 };
 
-// Create a function named removeProductFromCart that takes in the productId as an argument
-// [✅] removeProductFromCart should get the correct product based on the productId
-// [✅] removeProductFromCart should update the product quantity to 0
-// [✅] removeProductFromCart should remove the product from the cart
 const removeProductFromCart = function (productId) {
-  products[productId].quantity = 0; // Set product quantity to 0
+  const product = getProductId(productId);
+
+  product.quantity = 0; // Set product quantity to 0
   // checks to see if product is less than > -1
-  if (cart.indexOf(products[productId]) > -1) {
-    // if it is > -1 --> removes product from the cart
-    cart.splice(cart.indexOf(products[productId]), 1);
+  if (cart.indexOf(product) > -1) {
+    // if it is greater than -1 it removes product from the cart
+    cart.splice(cart.indexOf(product), 1);
   }
 };
 
-// Create a function named cartTotal that has no parameters
-// [✅] cartTotal should iterate through the cart to get the total cost of all products
-// [✅] cartTotal should return the total cost of the products in the cart
-// Hint: price and quantity can be used to determine total cost
 const cartTotal = function () {
   let total = 0;
   // each product price is added to total
@@ -145,22 +131,14 @@ const cartTotal = function () {
   return total;
 };
 
-/* [✅] Create a function called emptyCart that empties the products from the cart */
 const emptyCart = function () {
   // sets back to empty
   cart = [];
 };
 
-/* Create a function named pay that takes in an amount as an argument
-  [✅] amount is the money paid by customer
-  [✅] pay will return a negative number if there is a remaining balance
-  [✅] pay will return a positive number if money should be returned to customer
-  Hint: cartTotal function gives us cost of all the products in the cart  */
 const pay = function (amount) {
   // gets the returned value of totalCart
   const totalCost = cartTotal();
-  // const balance = amount - totalCost;
-  // return balance;
   return amount - totalCost;
 };
 
@@ -170,7 +148,6 @@ const pay = function (amount) {
   To fully complete this project, it is expected that all tests pass.
   Run the following command in terminal to run tests
   npm run test*/
-console.log(cart, products);
 module.exports = {
   products,
   cart,
@@ -181,6 +158,4 @@ module.exports = {
   cartTotal,
   pay,
   emptyCart,
-  /* Uncomment the following line if completing the currency converter bonus */
-  // currency
 };
