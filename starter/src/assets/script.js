@@ -141,11 +141,20 @@ const emptyCart = function () {
   cart = [];
 };
 
+// global paid amount
+let totalPaid = 0;
+
 const pay = function (amount) {
   // gets the returned value of totalCart
   const totalCost = cartTotal();
-  // returns the remaining balance rather its negative or positive
-  return amount - totalCost;
+
+  // current paid amount gets added to totalPaid
+  totalPaid += amount;
+
+  // gets the currentTotal and global total and puts it in remaining balance
+  const remainBalance = totalPaid - totalCost;
+
+  return remainBalance;
 };
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
