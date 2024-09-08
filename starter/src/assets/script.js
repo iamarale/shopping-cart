@@ -103,6 +103,7 @@ const decreaseQuantity = function (productId) {
   } else {
     // sets the quantity to 0
     product.quantity = 0;
+
     if (cart.indexOf(product) > -1) {
       // if the item in cart is greater than -1, it removes it from the cart
       cart.splice(cart.indexOf(product), 1);
@@ -113,7 +114,9 @@ const decreaseQuantity = function (productId) {
 const removeProductFromCart = function (productId) {
   const product = getProductId(productId);
 
-  product.quantity = 0; // Set product quantity to 0
+  // Set product quantity to 0
+  product.quantity = 0;
+
   // checks to see if product is less than > -1
   if (cart.indexOf(product) > -1) {
     // if it is greater than -1 it removes product from the cart
@@ -125,9 +128,11 @@ const cartTotal = function () {
   let total = 0;
   // each product price is added to total
   cart.forEach(function (product) {
+    // whatever the price * quantity is added to the total
     total += product.price * product.quantity;
   });
 
+  // returns all the price and quantity multiplications
   return total;
 };
 
@@ -139,6 +144,7 @@ const emptyCart = function () {
 const pay = function (amount) {
   // gets the returned value of totalCart
   const totalCost = cartTotal();
+  // returns the remaining balance rather its negative or positive
   return amount - totalCost;
 };
 
