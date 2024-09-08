@@ -141,22 +141,29 @@ const emptyCart = function () {
   cart = [];
 };
 
-// global paid amount
 let totalPaid = 0;
 
 const pay = function (amount) {
-  // gets the returned value of totalCart
-  const totalCost = cartTotal();
+  // check total amount in cart
+  const totalCart = cartTotal();
 
-  // current paid amount gets added to totalPaid
+  // add curr payment amount to ttotalPaid var
   totalPaid += amount;
 
-  // gets the currentTotal and global total and puts it in remaining balance
-  const remainBalance = totalPaid - totalCost;
+  // calc difference between totalPaid and totalCart
+  let remaining = totalPaid - totalCart;
 
-  return remainBalance;
+  // check if reaming amount is greater or equal to 0
+  if (remaining >= 0) {
+    // reset totalPaid
+    totalPaid = 0;
+
+    // payment
+    totalPaid = amount - remaining;
+  }
+
+  return remaining;
 };
-
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
 /* The following is for running unit tests. 
